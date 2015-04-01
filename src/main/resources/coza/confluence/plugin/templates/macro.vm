@@ -1,0 +1,18 @@
+<script type="text/javascript">
+jQuery.ajax({
+    dataType: "json",
+    url: 'https://api2.panopta.com/v2/server?limit=50&offset=0&name=${serverName}&api_key=${devAPIKey}',
+    type: 'GET',
+    success: function(data) {
+       if (data["server_list"][0].current_state == "up") {
+          jQuery("#up_${serverName}_image").show();
+          jQuery("#down_${serverName}_image").hide();
+       }else{
+          jQuery("#up_${serverName}_image").hide();
+          jQuery("#down_${serverName}_image").show();
+       }
+ }
+});
+</script>
+<img id="up_${serverName}_image" style="display:none" src="http://status.panopta.com/static/images/up.png"/>
+<img id="down_${serverName}_image" style="display:none" src="http://status.panopta.com/static/images/down.png"/>
